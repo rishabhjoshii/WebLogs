@@ -63,8 +63,15 @@ app.post('/login', async function(req,res){
 
 app.get('/profile',async function(req,res){
     const {token} = req.cookies;
-    jwt.verify({token}, jwtSecretKey)
-    res.json(req.cookies);
+    jwt.verify(token, jwtSecretKey,{}, (err,info) => {
+        if(err) throw err;
+        return res.json(info);
+    })
+})
+
+app.post('/logout', async function(req,res){
+    // set the token as empty
+    return res.cookie('token','').json({msg: "logout successfully"});
 })
 
 app.listen(3000);
