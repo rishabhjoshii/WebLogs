@@ -7,13 +7,15 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import IndexPage from "./pages/IndexPage";
 import LoginPage from "./pages/LoginPage";
 import RegisterPage from "./pages/RegisterPage";
+import { UserContextProvider } from "./UserContext";
 
 
 function App() {
 
   return (
     <BrowserRouter>
-      <Routes>
+      <UserContextProvider>
+        <Routes>
         <Route path="/" element={<Layout/>}>
         
           <Route index element={<IndexPage/>}></Route>
@@ -22,9 +24,9 @@ function App() {
 
         </Route>
 
-        
-
       </Routes>
+      </UserContextProvider>
+     
     </BrowserRouter>
 
     // <main>

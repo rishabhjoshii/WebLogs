@@ -52,7 +52,11 @@ app.post('/login', async function(req,res){
 
         //user is valid ,generate token for the user
         const token = jwt.sign({username},jwtSecretKey);
-        return res.cookie('token',token).json({msg: "logged in successfully"});
+        return res.cookie('token',token).json({
+            msg: "logged in successfully",
+            id: user._id, 
+            username,
+        });
 
     }
     catch(err){
