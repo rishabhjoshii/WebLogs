@@ -2,18 +2,24 @@ const express = require("express");
 const cors = require("cors");
 const mongoose = require("mongoose");
 const User = require("./models/user");
+const Post = require("./models/post");
 const bcrypt = require('bcryptjs');
 const jwt = require("jsonwebtoken");
 const cookieParser = require('cookie-parser');
+const multer = require('multer');
+const uploadMiddleware = multer({ dest: 'uploads/' });
+const fs = require('fs');
+
 
 const salt = bcrypt.genSaltSync(10);
 const jwtSecretKey = "mySecretKey123987";
 
 const app=express();
 
-app.use(cors({credentials: true, origin: 'http://localhost:5174'}));
+app.use(cors({credentials: true, origin: 'http://localhost:5173'}));
 app.use(express.json());
 app.use(cookieParser());
+app.use('/uploads', express.static(__dirname + '/uploads'));
 
 mongoose.connect("mongodb+srv://rishabhjoshii:qO4DyWnYsmlbPvER@cluster0.zozdpwg.mongodb.net/")
     .then(() => {
@@ -76,6 +82,49 @@ app.get('/profile',async function(req,res){
 app.post('/logout', async function(req,res){
     // set the token as empty
     return res.cookie('token','').json({msg: "logout successfully"});
+})
+
+app.post('/post', uploadMiddleware.single('file'), async function(req,res){
+    const {originalname, path} = req.file;
+    const parts= originalname.split('.');
+    const ext = parts[parts.length -1];
+    const newPath = path+'.'+ext ;
+    fs.renameSync(path, newPath);
+
+    const {token} = req.cookies;
+    jwt.verify(token, jwtSecretKey,{}, async (err,info) => {
+        if(err) throw err;
+
+        const {title,summary,content} = req.body;
+        const postDoc = await Post.create({
+            title,
+            summary,
+            content,
+            cover:newPath,
+            author: info.id,
+    });
+        return res.json(postDoc);
+    });
+
+    
+
+   
+})
+
+app.get('/post',async function(req,res){
+    // const posts = await Post.find(); 
+    // return res.json({msg: "posts retrieved successfully", posts: posts});
+    return res.json(await Post.find()
+        .populate('author', ['username'])
+        .sort({createdAt: -1})
+        .limit(20)
+    );
+})
+
+app.get('/post/:id', async (req, res) => {
+    const {id} = req.params;
+    const postDoc = await Post.findById(id).populate('author', ['username']);
+    return res.json(postDoc);
 })
 
 app.listen(3000);
