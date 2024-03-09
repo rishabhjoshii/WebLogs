@@ -25,7 +25,7 @@ const PostPage = () => {
         <div className='post-page'>
             <h1>{postInfo.title}</h1>
             <time>{formatISO9075(new Date(postInfo.createdAt))}</time>
-            <div className='author'>by @author-name</div>
+            <div className='author'>by @{postInfo.author}</div>
             <div className='image'>
                 <img src={`http://localhost:3000/${postInfo.cover}`} alt="Image"/>
             </div>

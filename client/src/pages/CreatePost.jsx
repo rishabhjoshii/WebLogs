@@ -1,7 +1,8 @@
-import React, { useState } from 'react'
+import React, { useState,useContext } from 'react'
 import ReactQuill from 'react-quill';
 import 'react-quill/dist/quill.snow.css';
 import { Navigate } from 'react-router-dom';
+import { UserContext } from '../UserContext';
 
 
 const CreatePost = () => {
@@ -12,12 +13,15 @@ const CreatePost = () => {
     const [redirect,setRedirect] = useState(false);
     const {setUserInfo,userInfo} = useContext(UserContext);
 
+    console.log("userInfo is here:" , userInfo);
+
     async function createNewPost(e){
         const data = new FormData();
         data.set('title', title);
         data.set('summary', summary);
         data.set('content', content);
         data.set('file', files[0]); 
+        data.set('username', userInfo.username);
         e.preventDefault();
 
         //fetch call

@@ -35,6 +35,7 @@ export default function LoginPage(){
         }
     }
     if(redirect){
+        alert("login successfull");
         return <Navigate to={'/'} />
     }
 

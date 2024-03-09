@@ -73,7 +73,8 @@ app.post('/login', async function(req,res){
 
 app.get('/profile',async function(req,res){
     const {token} = req.cookies;
-    jwt.verify(token, jwtSecretKey,{}, (err,info) => {
+    console.log("token",token)
+    jwt.verify(token, jwtSecretKey, (err,info) => {
         if(err) throw err;
         return res.json(info);
     })
@@ -95,13 +96,15 @@ app.post('/post', uploadMiddleware.single('file'), async function(req,res){
     jwt.verify(token, jwtSecretKey,{}, async (err,info) => {
         if(err) throw err;
 
-        const {title,summary,content} = req.body;
+        // const {title,summary,content} = req.body;
+        const {title,summary,content,username} = req.body;
         const postDoc = await Post.create({
             title,
             summary,
             content,
             cover:newPath,
-            author: info.id,
+            // author: info.id,
+            author: username
     });
         return res.json(postDoc);
     });
@@ -115,7 +118,7 @@ app.get('/post',async function(req,res){
     // const posts = await Post.find(); 
     // return res.json({msg: "posts retrieved successfully", posts: posts});
     return res.json(await Post.find()
-        .populate('author', ['username'])
+        // .populate('author', ['username'])
         .sort({createdAt: -1})
         .limit(20)
     );
