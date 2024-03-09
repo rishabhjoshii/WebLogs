@@ -88,29 +88,35 @@ app.post('/logout', async function(req,res){
 })
 
 app.post('/post', uploadMiddleware.single('file'), async function(req,res){
-    const {originalname, path} = req.file;
-    const parts= originalname.split('.');
-    const ext = parts[parts.length -1];
-    const newPath = path+'.'+ext ;
-    fs.renameSync(path, newPath);
+   try{
+      const {originalname, path} = req.file;
+      const parts= originalname.split('.');
+      const ext = parts[parts.length -1];
+      const newPath = path+'.'+ext ;
+      fs.renameSync(path, newPath);
 
-    const {token} = req.cookies;
-    jwt.verify(token, jwtSecretKey,{}, async (err,info) => {
-        if(err) throw err;
+      const {token} = req.cookies;
+      jwt.verify(token, jwtSecretKey,{}, async (err,info) => {
+         if(err) throw err;
 
-        // const {title,summary,content} = req.body;
-        const {title,summary,content,username} = req.body;
-        const postDoc = await Post.create({
-            title,
-            summary,
-            content,
-            cover:newPath,
-            // author: info.id,
-            author: username
-    });
-        return res.json(postDoc);
-    });
+         // const {title,summary,content} = req.body;
+         const {title,summary,content,username} = req.body;
+         const postDoc = await Post.create({
+               title,
+               summary,
+               content,
+               cover:newPath,
+               // author: info.id,
+               author: username
+      });
+         return res.json(postDoc);
+      });
 
+   }
+   catch(err){
+      return res.status(500).json({msg: "can't create Post",err});
+   }
+    
 })
 
 app.put('/post',uploadMiddleware.single('file'), async (req, res) => {

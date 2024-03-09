@@ -4,7 +4,7 @@ import {UserContext} from "./UserContext";
 
 export default function Header() {
   const {setUserInfo,userInfo} = useContext(UserContext);
-  const [redirect, setRedirect] = useState(false);
+  const navigate = useNavigate();
   useEffect(() => {
     fetch('http://localhost:3000/profile', {
       credentials: 'include',
@@ -14,7 +14,6 @@ export default function Header() {
       });
     });
   }, []);
-  //console.log("userInfo from frontend is" , userInfo);
 
   async function logout() {
     await fetch('http://localhost:3000/logout', {
@@ -22,14 +21,12 @@ export default function Header() {
       method: 'POST',
     });
     setUserInfo(null);
-    setRedirect(true);
+    navigate('/');
   }
 
   const username = userInfo?.username;
-  console.log("username after logout",username);
-  if(redirect){
-    return <Navigate to={'/'}/>
-  }
+  //console.log("username after logout",username);
+  
 
   return (
     <header>
@@ -38,7 +35,7 @@ export default function Header() {
         {username && (
           <>
             <Link to="/create">Create new post</Link>
-            <Link onClick={logout}>Logout ({username})</Link>
+            <Link onClick={logout} >Logout ({username})</Link>
           </>
         )}
         {!username && (

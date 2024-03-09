@@ -34,11 +34,15 @@ const CreatePost = () => {
         if(response.ok){
             setRedirect(true);
         }
+        if(response.status===500){
+            alert("fill all the fields correctly");
+        }
     }
 
     if(redirect){
         return <Navigate to={'/'}/>
     }
+    if(!userInfo) return <Navigate to={'/'}/>
   return (
     <form onSubmit={createNewPost}>
         <input type='title' 
