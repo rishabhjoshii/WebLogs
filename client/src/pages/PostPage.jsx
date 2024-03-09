@@ -29,7 +29,7 @@ const PostPage = () => {
             <h1>{postInfo.title}</h1>
             <time>{formatISO9075(new Date(postInfo.createdAt))}</time>
             <div className='author'>by @{postInfo.author}</div>
-            {postInfo.author === userInfo.username && (
+            {postInfo!==null && userInfo!==null && postInfo.author === userInfo.username && (
               <div className='edit-options'>
                 <div className='edit-row'>
                   <Link className='edit-btn' to={`/edit/${postInfo._id}`}>
