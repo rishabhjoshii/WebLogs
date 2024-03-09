@@ -3,6 +3,7 @@ import ReactQuill from 'react-quill';
 import 'react-quill/dist/quill.snow.css';
 import { Navigate } from 'react-router-dom';
 import { UserContext } from '../UserContext';
+import Editor from '../Editor';
 
 
 const CreatePost = () => {
@@ -53,8 +54,7 @@ const CreatePost = () => {
         <input type='file'
                 onChange={e=>setFiles(e.target.files)}></input>
 
-        <ReactQuill value={content} 
-            onChange={(newValue)=> setContent(newValue)}/>
+        <Editor value={content} onChange={setContent}/>
 
         <button style={{marginTop:'5px'}}>Create Post</button>
     </form>

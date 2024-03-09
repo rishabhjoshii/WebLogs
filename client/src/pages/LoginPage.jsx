@@ -17,12 +17,13 @@ export default function LoginPage(){
                 headers: {'Content-Type': 'application/json'},
                 credentials: 'include',
             })
-            console.log(response);
+            //console.log("login response from backend" , response);
 
-            if(response.ok){
+            if(response.status===200){
                 response.json().then((userInfo) => {
                     setUserInfo(userInfo);
                     setRedirect(true);
+                    alert("login successful");
                 })
                 
             }
@@ -35,7 +36,6 @@ export default function LoginPage(){
         }
     }
     if(redirect){
-        alert("login successfull");
         return <Navigate to={'/'} />
     }
 

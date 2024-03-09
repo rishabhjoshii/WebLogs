@@ -12,7 +12,7 @@ export default function IndexPage() {
       });
     });
   }, []);
-  console.log("posts is here:" , posts);
+  //console.log("posts is here:" , posts);
 
   if(loading) return <div>Loading...</div>
   

@@ -97,6 +97,7 @@ input{
 
 }
 button{
+  cursor: pointer;
   width: 100%;
   display: block;
   background-color: #555;
@@ -104,6 +105,10 @@ button{
   color: #fff;
   border-radius: 5px;
   padding: 7px 0;
+}
+
+a{
+  cursor: pointer;
 }
 
 form.login h1, form.register h1{
@@ -149,4 +154,37 @@ div.post-page div.author{
 div.post-page div.content{
   line-height: 1.6rem;
   
+}
+
+div.edit-row{
+  text-align: center;
+  margin-bottom: 20px;
+}
+div.post-page a.edit-btn{
+  background-color: #333;
+  color: #fff;
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  padding: 10px 20px 20px 20px;
+  display: inline-block;
+  text-decoration: none;
+  border-radius: 5px;
+  margin-right: 20px;
+  margin-left: 20px;
+  height: 40px;
+  
+}
+
+a svg{
+  height: 20px;
+}
+
+.edit-options{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+#del-btn{
+  background-color: rgb(238, 67, 67);
 }

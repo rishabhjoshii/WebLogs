@@ -13,6 +13,7 @@ export default function Header() {
       });
     });
   }, []);
+  //console.log("userInfo from frontend is" , userInfo);
 
   function logout() {
     fetch('http://localhost:3000/logout', {
@@ -26,7 +27,7 @@ export default function Header() {
 
   return (
     <header>
-      <Link to="/" className="logo">MyBlog</Link>
+      <Link to="/" className="logo">WebLogs</Link>
       <nav>
         {username && (
           <>
