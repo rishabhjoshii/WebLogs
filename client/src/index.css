@@ -1,0 +1,303 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer components{
+  
+}
+*{
+    box-sizing: border-box;
+  }
+  body{
+    color: #222;
+  }
+  
+  main{
+    padding: 10px;
+    max-width: 700px;  
+    margin: 0 auto;
+  }
+  @media screen and (min-width: 850px) {
+    main{
+      max-width: 900px;
+    }
+  }
+  header{
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 50px;
+    align-items: center;
+    margin-top: 20px;
+  }
+  img{
+    max-width: 100%;
+  }
+  header a{
+    text-decoration: none;
+    color: inherit;
+  }
+  
+  header a.logo{
+    font-weight: bold;
+    font-size: 1.5rem;
+  }
+  
+  header nav{
+    display: flex;
+    gap: 15px;
+  }
+  
+  div.post{
+    display: grid;
+    grid-template-columns: 1fr;
+    /* grid-template-columns: 0.9fr 1.1fr; */
+    gap: 20px;
+    margin-bottom: 30px;
+    overflow: hidden;
+  }
+  
+  div.post div.image img{
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center center;
+  }
+  
+  @media screen and (min-width: 786px) {
+    div.post{
+      grid-template-columns: 0.9fr 1.1fr;
+      height: 200px;
+      /* height: 263px; */
+    }
+  }
+  
+  div.post-page div.image{
+    max-height: 400px;
+    /* max-height: 200px; */
+    /* height: 100%; */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+  }
+  div.post-page div.image img{
+    object-fit: cover;
+    object-position: center center;
+    width: 100%;
+  }
+  
+  div.post div.texts h2{
+    margin: 0;
+    font-size: 1.8rem;
+  }
+  
+  div.post div.texts a{
+    text-decoration: none;
+    color: inherit;
+  }
+  
+  div.post p.info{
+    margin: 6px 0;
+    color: #888;
+    font-size: 0.8rem;
+    font-weight: bold;
+    display: flex;
+    gap: 10px;
+  }
+  
+  div.post p.info a.author{
+    color: #333;
+  }
+  div.post p.summary{
+    margin: 10px 0;
+    line-height: 1.4rem;
+  
+  }
+  
+  form.login , form.register{
+    max-width: 400px;
+    margin: 0 auto;
+  }
+  input{
+    display: block;
+    margin-bottom: 5px;
+    width: 100%;
+    padding: 5px 7px;
+    border: 2px solid #ddd;
+    border-radius: 5px;
+    background-color: #fff;
+  
+  }
+  button{
+    cursor: pointer;
+    width: 100%;
+    display: block;
+    background-color: #555;
+    border: 0;
+    color: #fff;
+    border-radius: 5px;
+    padding: 7px 0;
+  }
+  
+  a{
+    cursor: pointer;
+  }
+  
+  form.login h1, form.register h1{
+    text-align: center;
+  }
+  
+  
+  
+  div.post-page a{
+    color: #333;
+    text-decoration: underline;
+  }
+  
+  div.post-page h1{
+    text-align: center;
+    margin: 10px 0 5px;
+  }
+  
+  div.post-page time{
+    text-align: center;
+    display: block;
+    font-size: 0.7rem;
+    color: #aaa;
+  }
+  
+  div.post-page div.author{
+    text-align: center;
+    margin-bottom: 20px;
+    font-size: 0.7rem;
+    font-weight: bold;
+  }
+  
+  div.post-page div.content{
+    line-height: 1.6rem;
+    
+  }
+  
+  div.edit-row{
+    text-align: center;
+    margin-bottom: 20px;
+    /* color: #fff; */
+  }
+  div.post-page .edit-btn{
+    background-color: #333;
+    color: #fff;
+    /* display: inline-flex; */
+    display: inline-block;
+    align-items: center;
+    gap: 5px;
+    padding: 10px 20px ;
+    display: inline-block;
+    text-decoration: none;
+    border-radius: 5px;
+    margin-right: 20px;
+    margin-left: 20px;
+    height: 40px;
+    
+  }
+  
+  a svg{
+    height: 20px;
+    display: inline-block; /* Added display property */
+    vertical-align: middle; /* Added vertical-align property */
+  }
+  
+  .edit-options{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  #del-btn{
+    background-color: rgb(238, 67, 67);
+    color: #fff;
+  }
+  
+  /*======================
+      404 page
+  =======================*/
+  
+  
+  .page_404{ 
+    padding:40px 0; 
+    background:#fff; 
+    font-family: 'Arvo', serif;
+  }
+  
+  .page_404  img{ 
+    width:100%;
+  }
+  
+  .four_zero_four_bg{
+      background-image: url(https://cdn.dribbble.com/users/285475/screenshots/2083086/dribbble_1.gif);
+      height: 400px;
+      background-position: center;
+   }
+   
+   
+  .four_zero_four_bg h1{
+   font-size:80px;
+   }
+   
+  .four_zero_four_bg h3{
+      font-size:80px;
+  }
+               
+  .link_404{			 
+        color: #fff!important;
+      padding: 10px 20px;
+      background: #39ac31;
+      margin: 20px 0;
+      display: inline-block;
+      text-decoration: none;
+  }
+  .link_404:hover{
+    text-decoration: underline;
+  }
+  .contant_box_404{ 
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      margin-top:-50px;
+  }
+
+  /* footer stylinig */
+
+  footer{
+    height: 40px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+  }
+  footer nav{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  footer nav a{
+    margin-right: 10px;
+    margin-left: 10px;
+    color: #7d7878;
+  }
+  footer nav a:hover{
+    text-decoration: underline;
+  }
+  footer div{
+    color: #7d7878;
+    margin-top: 7px;
+  }
+
+  
+  
+  /* dashboard bg image styling */
+  .bg-with-image {
+    background-image: url('../src/assets/bg-image.jpg');
+    background-size: cover; /* Adjust to cover the entire section */
+    background-position: center; /* Center the image */
+
+}

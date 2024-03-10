@@ -38,26 +38,28 @@ const PostPage = () => {
         });
     
         if (response.status===200) {
-          console.log("Post deleted successfully");
+          //console.log("Post deleted successfully");
           navigate('/');
         } 
         else {
           const errorData = await response.json();
-          console.error("Failed to delete post:", errorData);
+          alert("failed to delete post")
+          //console.error("Failed to delete post:", errorData);
         }
       } 
       catch (error) {
-        console.error("An error occurred while deleting post:", error);
+        //console.error("An error occurred while deleting post:", error);
+        alert("An error occurred while deleting post");
       }
     }
 
     if(!postInfo) return '';
-    console.log(postInfo);
-    console.log("userInfo",userInfo);
+    //console.log(postInfo);
+    //console.log("userInfo",userInfo);
 
     return (
         <div className='post-page'>
-            <h1>{postInfo.title}</h1>
+            <h1 class=" text-3xl font-bold tracking-tighter sm:text-3xl md:text-4xl/none">{postInfo.title}</h1>
             <time>{formatISO9075(new Date(postInfo.createdAt))}</time>
             <div className='author'>by @{postInfo.author}</div>
             {postInfo!==null && userInfo!==null && postInfo.author === userInfo.username && (

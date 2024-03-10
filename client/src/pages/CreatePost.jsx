@@ -14,7 +14,7 @@ const CreatePost = () => {
     const [redirect,setRedirect] = useState(false);
     const {setUserInfo,userInfo} = useContext(UserContext);
 
-    console.log("userInfo is here:" , userInfo);
+    //console.log("userInfo is here:" , userInfo);
 
     async function createNewPost(e){
         const data = new FormData();

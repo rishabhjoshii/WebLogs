@@ -46,9 +46,9 @@ const EditPost = () => {
             setRedirect(true);
             alert("Post updated successfully");
         }
-        else{
-            console.log("post update failed, response is here: ", response);
-        }
+        // else{
+        //     console.log("post update failed, response is here: ", response);
+        // }
         
     }
 
