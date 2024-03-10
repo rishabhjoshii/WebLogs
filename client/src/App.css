@@ -59,7 +59,8 @@ div.post div.image img{
 @media screen and (min-width: 786px) {
   div.post{
     grid-template-columns: 0.9fr 1.1fr;
-    height: 263px;
+    height: 200px;
+    /* height: 263px; */
   }
 }
 

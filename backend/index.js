@@ -167,4 +167,26 @@ app.get('/post/:id', async (req, res) => {
     return res.json(postDoc);
 })
 
+app.delete('/post/:id', async function(req, res) {
+    try{
+        const {id} = req.params;
+        const {username} = req.body;
+
+        //authenticating the user before deleting the post
+        if(!username) return res.status(400).json({msg: "user is not the owner of this post"});
+        const postDoc = await Post.findById(id);
+        if(!postDoc || postDoc.author !==username) return res.status(400).json({msg: "user is not the owner of this post"});
+
+        //author is authenticated
+        const response = await Post.findByIdAndDelete(id);
+        if (!response) {
+            return res.status(404).json({ msg: "Post not found" });
+        }
+        return res.json({msg:"post deleted successfully", response});
+    }
+    catch(err){
+        return res.status(404).json({msg:"Deletion failed", err});
+    }
+})
+
 app.listen(3000);
