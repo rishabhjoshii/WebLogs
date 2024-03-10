@@ -35,6 +35,7 @@ const EditPost = () => {
         if(files?.[0]){
             data.set('file',files?.[0]);
         }
+        data.set('username', userInfo? userInfo.username : null);
         
         const response = await fetch('http://localhost:3000/post',{
             method: 'PUT',
@@ -44,6 +45,9 @@ const EditPost = () => {
         if(response.status === 200){
             setRedirect(true);
             alert("Post updated successfully");
+        }
+        else{
+            console.log("post update failed, response is here: ", response);
         }
         
     }

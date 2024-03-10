@@ -131,12 +131,19 @@ app.put('/post',uploadMiddleware.single('file'), async (req, res) => {
    const {token} = req.cookies;
    jwt.verify(token, jwtSecretKey,{}, async (err,info) => {
       if(err) throw err;
-      // console.log("verify info is here",info);
+      
       //info to be updated
-     const {id,title,summary,content} = req.body;
-     //console.log("body from backend" , req.body);
+     const {id,title,summary,content,username} = req.body;
 
-     const postDoc = await Post.find({_id:id});
+     //authentcate the user before editing the post
+     //console.log("from bk , user is:", username);
+     if(!username) return res.status(404).json({msg: "user is not the owner of this post"});
+     
+     const postDoc = await Post.findOne({_id:id});
+     //console.log("from bk , author is :", postDoc);
+
+     if(!postDoc || postDoc.author!==username) return res.status(404).json({msg: "author is not the owner of this blog"});
+     
      const updatedPost = await Post.updateOne({_id:id},{
          $set: {title:title, 
                summary:summary, 
