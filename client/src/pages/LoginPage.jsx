@@ -33,7 +33,7 @@ export default function LoginPage(){
             }
         }
         catch(err){
-
+          alert("Something went wrong, Try again later")
         }
     }
     if(redirect){

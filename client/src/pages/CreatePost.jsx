@@ -32,6 +32,7 @@ const CreatePost = () => {
             credentials: 'include',
         });
         if(response.ok){
+            alert("Post created successfully");
             setRedirect(true);
         }
         if(response.status===500){

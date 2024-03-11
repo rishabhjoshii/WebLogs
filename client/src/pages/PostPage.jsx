@@ -2,12 +2,14 @@ import { format, formatISO9075 } from 'date-fns';
 import React, { useContext, useEffect, useState } from 'react'
 import { Link, useLocation, useNavigate, useParams } from 'react-router-dom';
 import { UserContext } from '../UserContext';
+import { Audio,ColorRing } from 'react-loader-spinner'
 
 const PostPage = () => {
     const location = useLocation();
     const navigate = useNavigate();
     const {userInfo} = useContext(UserContext);
     const [postInfo, setPostInfo] = useState(null);
+    const [loading, setLoading] = useState(true);
     const param = useParams();
     // console.log(param);
     const id = param.id;   //this is blog or post id 
@@ -17,6 +19,7 @@ const PostPage = () => {
           .then(response => {
             response.json().then(postInfo => {
               setPostInfo(postInfo);
+              setLoading(false);
             });
           });
       }, []);
@@ -56,6 +59,18 @@ const PostPage = () => {
     if(!postInfo) return '';
     //console.log(postInfo);
     //console.log("userInfo",userInfo);
+    if(loading) {
+      return <div className='w-[100%] h-[80vh] flex justify-center items-center'>
+        <ColorRing
+        visible={true}
+        height="80"
+        width="80"
+        ariaLabel="color-ring-loading"
+        wrapperStyle={{}}
+        wrapperClass="color-ring-wrapper"
+        colors={['#000','#000','#000','#000','#000']} ></ColorRing>
+      </div>
+    }
 
     return (
         <div className='post-page'>
