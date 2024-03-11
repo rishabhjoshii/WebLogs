@@ -18,9 +18,10 @@ const EditPost = () => {
         fetch(`http://localhost:3000/post/${id}`)
             .then(response => {
                 response.json().then(postInfo => {
-                    setTitle(postInfo.title);
-                    setSummary(postInfo.summary);
-                    setContent(postInfo.content);
+                    console.log("postInfo is here ", postInfo);
+                    setTitle(postInfo.postDoc.title);
+                    setSummary(postInfo.postDoc.summary);
+                    setContent(postInfo.postDoc.content);
                 })
             })
     },[]);

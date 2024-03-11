@@ -43,6 +43,7 @@ export default function Header() {
           <>
             <Link to="/create">Create new post</Link>
             <Link onClick={logout} >Logout ({username})</Link>
+            <Link to={`/${username}`} className='h-[2rem] w-[2rem] bg-[#003663] text-white  flex justify-center items-center rounded-full font-extrabold cursor-pointer' >{username.charAt(0).toUpperCase()}</Link> 
           </>
         )}
         {!username && (

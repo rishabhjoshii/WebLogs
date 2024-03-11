@@ -3,6 +3,7 @@ import React, { useContext, useEffect, useState } from 'react'
 import { Link, useLocation, useNavigate, useParams } from 'react-router-dom';
 import { UserContext } from '../UserContext';
 import { Audio,ColorRing } from 'react-loader-spinner'
+import NotFoundPage from './NotFoundPage';
 
 const PostPage = () => {
     const location = useLocation();
@@ -10,6 +11,7 @@ const PostPage = () => {
     const {userInfo} = useContext(UserContext);
     const [postInfo, setPostInfo] = useState(null);
     const [loading, setLoading] = useState(true);
+    const [found, setfound] = useState(true);
     const param = useParams();
     // console.log(param);
     const id = param.id;   //this is blog or post id 
@@ -18,8 +20,14 @@ const PostPage = () => {
         fetch(`http://localhost:3000/post/${id}`)
           .then(response => {
             response.json().then(postInfo => {
-              setPostInfo(postInfo);
+              //console.log("postinfo is here",postInfo);
+              setPostInfo(postInfo.postDoc);
               setLoading(false);
+              //console.log(postInfo.status,typeof postInfo.status);
+              if(postInfo.status === 404){
+                //console.log("control is reaching here");
+                setfound(false);
+              }
             });
           });
       }, []);
@@ -42,7 +50,9 @@ const PostPage = () => {
     
         if (response.status===200) {
           //console.log("Post deleted successfully");
-          navigate('/');
+          // navigate(-1);
+          window.history.back();
+          
         } 
         else {
           const errorData = await response.json();
@@ -56,7 +66,12 @@ const PostPage = () => {
       }
     }
 
-    if(!postInfo) return '';
+    
+
+    if (!found) {
+      return <NotFoundPage />;
+    }
+    // if(!postInfo) return "";
     //console.log(postInfo);
     //console.log("userInfo",userInfo);
     if(loading) {
@@ -71,8 +86,9 @@ const PostPage = () => {
         colors={['#000','#000','#000','#000','#000']} ></ColorRing>
       </div>
     }
-
+    
     return (
+      <>
         <div className='post-page'>
             <h1 class=" text-3xl font-bold tracking-tighter sm:text-3xl md:text-4xl/none">{postInfo.title}</h1>
             <time>{formatISO9075(new Date(postInfo.createdAt))}</time>
@@ -104,6 +120,7 @@ const PostPage = () => {
             
             <div className='content' dangerouslySetInnerHTML={{__html:postInfo.content}}/>
         </div>
+      </>
     )
 }
 

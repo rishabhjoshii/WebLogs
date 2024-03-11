@@ -72,14 +72,20 @@ app.post('/login', async function(req,res){
 })
 
 app.get('/profile',async function(req,res){
-    const {token} = req.cookies;
-   //  console.log("token",token)
-    if(!token && token == "") return res.status(400).json(null);
+    try{
+        const {token} = req.cookies;
+    //  console.log("token",token)
+        if(!token && token == "") return res.status(400).json(null);
 
-    jwt.verify(token, jwtSecretKey, (err,info) => {
-        if(err) return res.json({msg:"error on /profile endpoint",error: err});
-        return res.json(info);
-    })
+        jwt.verify(token, jwtSecretKey, (err,info) => {
+            if(err) return res.json({msg:"error on /profile endpoint",error: err});
+            return res.json(info);
+        })
+    }
+    catch(err){
+        return res.status(400).json({msg:"error on /profile endpoint",error: err});
+    }
+    
 })
 
 app.post('/logout', async function(req,res){
@@ -120,58 +126,78 @@ app.post('/post', uploadMiddleware.single('file'), async function(req,res){
 })
 
 app.put('/post',uploadMiddleware.single('file'), async (req, res) => {
-   let newPath = null;
-   if(req.file){
-      const {originalname, path} = req.file;
-      const parts= originalname.split('.');
-      const ext = parts[parts.length -1];
-      newPath = path+'.'+ext ;
-      fs.renameSync(path, newPath);
-   }
-   const {token} = req.cookies;
-   jwt.verify(token, jwtSecretKey,{}, async (err,info) => {
-      if(err) throw err;
-      
-      //info to be updated
-     const {id,title,summary,content,username} = req.body;
+    try{
+        let newPath = null;
+        if(req.file){
+            const {originalname, path} = req.file;
+            const parts= originalname.split('.');
+            const ext = parts[parts.length -1];
+            newPath = path+'.'+ext ;
+            fs.renameSync(path, newPath);
+        }
+        const {token} = req.cookies;
+        jwt.verify(token, jwtSecretKey,{}, async (err,info) => {
+            if(err) throw err;
+            
+            //info to be updated
+            const {id,title,summary,content,username} = req.body;
 
-     //authentcate the user before editing the post
-     //console.log("from bk , user is:", username);
-     if(!username) return res.status(404).json({msg: "user is not the owner of this post"});
-     
-     const postDoc = await Post.findOne({_id:id});
-     //console.log("from bk , author is :", postDoc);
+            //authentcate the user before editing the post
+            //console.log("from bk , user is:", username);
+            if(!username) return res.status(404).json({msg: "user is not the owner of this post"});
+            
+            const postDoc = await Post.findOne({_id:id});
+            //console.log("from bk , author is :", postDoc);
 
-     if(!postDoc || postDoc.author!==username) return res.status(404).json({msg: "author is not the owner of this blog"});
-     
-     const updatedPost = await Post.updateOne({_id:id},{
-         $set: {title:title, 
-               summary:summary, 
-               content:content,
-               cover: newPath ? newPath : postDoc.cover,
-            }
-     })
-     //console.log("postDoc is here", postDoc);
+            if(!postDoc || postDoc.author!==username) return res.status(404).json({msg: "author is not the owner of this blog"});
+            
+            const updatedPost = await Post.updateOne({_id:id},{
+                $set: {title:title, 
+                    summary:summary, 
+                    content:content,
+                    cover: newPath ? newPath : postDoc.cover,
+                }
+            })
+            //console.log("postDoc is here", postDoc);
+        
+            return res.json({msg:"post updated successfully", updatedPost});
+        });
+    }
+    catch(err){
+        return res.status(400).json({msg:"error at /post put endpoint",err});
+    }
    
-     return res.json({msg:"post updated successfully", updatedPost});
-  });
 })
 
 app.get('/post',async function(req,res){
     // const posts = await Post.find(); 
     // return res.json({msg: "posts retrieved successfully", posts: posts});
-    return res.json(await Post.find()
+    try{
+        const posts = await Post.find()
         // .populate('author', ['username'])
         .sort({createdAt: -1})
         .limit(20)
-    );
+    ;
+
+    return res.json(posts);
+    }
+    catch(err){
+        return res.status(400).json({msg:"error at /post get endpoint",err});
+    }
 })
 
 app.get('/post/:id', async (req, res) => {
-    const {id} = req.params;
-    const postDoc = await Post.findById(id)
-      // .populate('author', ['username']);
-    return res.json(postDoc);
+    try{
+        const {id} = req.params;
+        const postDoc = await Post.findById(id)
+        // .populate('author', ['username']);
+        return res.json({postDoc, status: 200});
+    }
+    catch(err){
+        console.log(err);
+        return res.status(404).json({msg: "cant find post with this id", status: 404});
+    }
+    
 })
 
 app.delete('/post/:id', async function(req, res) {
@@ -193,6 +219,22 @@ app.delete('/post/:id', async function(req, res) {
     }
     catch(err){
         return res.status(404).json({msg:"Deletion failed", err});
+    }
+})
+
+app.get('/:username', async function(req,res){
+    try{
+        const {username} = req.params;
+
+        const userExists = await User.findOne({username: username});
+        if(!userExists) return res.status(404).json({msg: "user not found",status: 404});
+
+        const userDoc = await Post.find({author: username}).sort({createdAt: -1});
+        return res.json(userDoc);
+    }
+    catch(err){
+        console.log(err);
+        return res.status(400).json({msg: "error while fetching user's posts",status:400,err});
     }
 })
 

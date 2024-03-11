@@ -12,6 +12,7 @@ import { UserContextProvider } from "./UserContext";
 import PostPage from "./pages/PostPage";
 import EditPost from "./pages/EditPost";
 import NotFoundPage from "./pages/NotFoundPage";
+import UserProfile from "./pages/UserProfile";
 
 function App() {
 
@@ -27,7 +28,10 @@ function App() {
           <Route path="/create" element={<CreatePost/>}></Route>
           <Route path="/post/:id" element={<PostPage/>}></Route>
           <Route path="/edit/:id" element={<EditPost/>}></Route>
-          <Route path="*" element={<NotFoundPage/>}></Route>
+          <Route path="/:username" element={<UserProfile/>} ></Route>
+          <Route path="/:username/post/:id" element={<PostPage/>}></Route>
+          <Route path="/404"  element={<NotFoundPage/>}></Route>
+          <Route path="*"  element={<NotFoundPage/>}></Route>
 
 
         </Route>
