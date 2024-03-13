@@ -1,5 +1,6 @@
 import { useState } from "react"
 import { Navigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 export default function RegisterPage(){
     const [username, setUsername] = useState('');
@@ -51,7 +52,7 @@ export default function RegisterPage(){
               <input
                 className="flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50"
                 id="email"
-                placeholder="m@example.com"
+                placeholder="username"
                 required=""
                 type="text"
                 value={username}
@@ -85,8 +86,16 @@ export default function RegisterPage(){
             >
               Register
             </button>
+            <button className="inline-flex items-center justify-center whitespace-nowrap rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 border border-input bg-background hover:bg-accent hover:text-accent-foreground h-10 px-4 py-2 w-full bg-[#c90e0e] text-white">
+              Register with Google
+            </button>
           </div>
-          
+          <div className="mt-4 text-center text-sm">
+            Already have an account?
+            <Link className="underline" to={'/login'}>
+              Login
+            </Link>
+          </div>
         </div>
       </div>
         </>

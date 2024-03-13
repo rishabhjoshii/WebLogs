@@ -92,7 +92,9 @@ const PostPage = () => {
         <div className='post-page'>
             <h1 class=" text-3xl font-bold tracking-tighter sm:text-3xl md:text-4xl/none">{postInfo.title}</h1>
             <time>{formatISO9075(new Date(postInfo.createdAt))}</time>
-            <div className='author'>by @{postInfo.author}</div>
+            <div className='author'>
+              <Link to={`/${postInfo.author}`}>by @{postInfo.author}</Link>
+            </div>
             {postInfo!==null && userInfo!==null && postInfo.author === userInfo.username && (
               <div className='edit-options'>
                 <div className='edit-row'>
@@ -118,7 +120,7 @@ const PostPage = () => {
                 <img src={`http://localhost:3000/${postInfo.cover}`} alt="Image"/>
             </div>
             
-            <div className='content' dangerouslySetInnerHTML={{__html:postInfo.content}}/>
+            <div className='content shadow-lg shadow-[#474646] p-[1rem] mt-[2rem]' dangerouslySetInnerHTML={{__html:postInfo.content}}/>
         </div>
       </>
     )

@@ -2,6 +2,7 @@ import Post from "../Post";
 import {useEffect, useState} from "react";
 import { Audio,ColorRing } from 'react-loader-spinner'
 import Dashboard from "./Dashboard";
+import { Link } from "react-router-dom";
 
 
 export default function IndexPage() {
@@ -36,20 +37,23 @@ export default function IndexPage() {
       {posts.length > 0 && posts.map(post => (
         <Post {...post} />
       ))}
-   <hr/>
-    <footer >
-     <div>Made with ❤️ by Rishabh </div>
-      <nav >
-        
-        <a>Copyright © 2024. All rights reserved.</a>
-        <a >
+      
+      <hr/>
+      <footer className="gap-2" >
+      <div>Made with ❤️ by Rishabh </div>
+      <nav>
+          <a class="text-xs hover:underline underline-offset-4" >
+          Copyright © 2024. All rights reserved.
+        </a>
+          <a class="text-xs hover:underline underline-offset-4" >
           Terms of Service
         </a>
-        <a >
+        <a class="text-xs hover:underline underline-offset-4" >
           Privacy
         </a>
       </nav>
-    </footer>
+     </footer>
+    
     </>
   );
 }

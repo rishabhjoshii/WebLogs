@@ -19,13 +19,13 @@
   }
   @media screen and (min-width: 850px) {
     main{
-      max-width: 900px;
+      max-width:1200px;
     }
   }
   header{
     display: flex;
     justify-content: space-between;
-    margin-bottom: 50px;
+    margin-bottom: 40px;
     align-items: center;
     margin-top: 20px;
   }
@@ -66,13 +66,13 @@
   @media screen and (min-width: 786px) {
     div.post{
       grid-template-columns: 0.9fr 1.1fr;
-      height: 200px;
-      /* height: 263px; */
+      /* height: 200px; */
+      height: 263px;
     }
   }
   
   div.post-page div.image{
-    max-height: 400px;
+    max-height: 500px;
     /* max-height: 200px; */
     /* height: 100%; */
     display: flex;
@@ -268,7 +268,7 @@
   /* footer stylinig */
 
   footer{
-    height: 40px;
+    height: 75px;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -282,13 +282,11 @@
   footer nav a{
     margin-right: 10px;
     margin-left: 10px;
-    color: #7d7878;
   }
   footer nav a:hover{
     text-decoration: underline;
   }
   footer div{
-    color: #7d7878;
     margin-top: 7px;
   }
 

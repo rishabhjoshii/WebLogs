@@ -41,7 +41,8 @@ const CreatePost = () => {
     }
 
     if(redirect){
-        return <Navigate to={'/'}/>
+        // return <Navigate to={'/'}/>
+        window.history.back();
     }
     if(!userInfo) return <Navigate to={'/'}/>
   return (
