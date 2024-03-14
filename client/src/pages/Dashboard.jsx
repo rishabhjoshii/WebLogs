@@ -2,7 +2,7 @@ import React from 'react'
 
 const Dashboard = () => {
   return (
-    <div class="flex flex-col h-[80dvh] mb-[10px]  ">
+    <div class="flex flex-col h-[90dvh] mb-[10px]  ">
             <section class="w-full h-full flex justify-center items-center  bg-with-image" >
                     <div class="space-y-3 text-center">
                         <h1 class=" text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl/none">Exploring the World</h1>

@@ -1,7 +1,7 @@
 import React, { useState,useContext } from 'react'
 import ReactQuill from 'react-quill';
 import 'react-quill/dist/quill.snow.css';
-import { Navigate } from 'react-router-dom';
+import { Navigate, useNavigate } from 'react-router-dom';
 import { UserContext } from '../UserContext';
 import Editor from '../Editor';
 
@@ -13,6 +13,7 @@ const CreatePost = () => {
     const [files,setFiles] = useState("");
     const [redirect,setRedirect] = useState(false);
     const {setUserInfo,userInfo} = useContext(UserContext);
+    const navigate = useNavigate();
 
     //console.log("userInfo is here:" , userInfo);
 
@@ -44,26 +45,35 @@ const CreatePost = () => {
         // return <Navigate to={'/'}/>
         window.history.back();
     }
-    if(!userInfo) return <Navigate to={'/'}/>
+    if(!userInfo.username) {
+        // console.log("username:",userInfo.username);
+        // console.log("cotrol is reaching here");
+        return navigate('/')
+    }
   return (
-    <form onSubmit={createNewPost}>
-        <input type='title' 
-            placeholder='Title' 
-            value={title} 
-            onChange={(e)=> {setTitle(e.target.value)}}></input>
+    <>
+    <div className='flex justify-center items-center '>
+        <form onSubmit={createNewPost} className='screen w-[70%]'>
+            <input type='title' 
+                placeholder='Title' 
+                value={title} 
+                onChange={(e)=> {setTitle(e.target.value)}}></input>
 
-        <input type='summary' 
-            placeholder='Summary'
-            value={summary}
-            onChange={(e)=>setSummary(e.target.value)}></input>
+            <input type='summary' 
+                placeholder='Summary'
+                value={summary}
+                onChange={(e)=>setSummary(e.target.value)}></input>
 
-        <input type='file'
-                onChange={e=>setFiles(e.target.files)}></input>
+            <input type='file'
+                    onChange={e=>setFiles(e.target.files)}></input>
 
-        <Editor value={content} onChange={setContent}/>
+            <Editor value={content} onChange={setContent} />
 
-        <button style={{marginTop:'5px'}}>Create Post</button>
-    </form>
+            <button style={{marginTop:'7px'}}>Create Post</button>
+        </form>
+    </div>
+    
+    </>
   )
 }
 
