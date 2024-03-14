@@ -15,7 +15,7 @@ const EditPost = () => {
     const {id} = useParams();
 
     useEffect(() => {
-        fetch(`http://localhost:3000/post/${id}`)
+        fetch(`https://weblogs-3hui.onrender.com/${id}`)
             .then(response => {
                 response.json().then(postInfo => {
                     console.log("postInfo is here ", postInfo);
@@ -38,7 +38,7 @@ const EditPost = () => {
         }
         data.set('username', userInfo? userInfo.username : null);
         
-        const response = await fetch('http://localhost:3000/post',{
+        const response = await fetch('https://weblogs-3hui.onrender.com/post',{
             method: 'PUT',
             body: data,
             credentials: 'include',

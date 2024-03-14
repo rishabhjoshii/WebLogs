@@ -6,7 +6,7 @@ export default function Header() {
   const {setUserInfo,userInfo} = useContext(UserContext);
   const navigate = useNavigate();
   useEffect(() => {
-    fetch('http://localhost:3000/profile', {
+    fetch('https://weblogs-3hui.onrender.com/profile', {
       credentials: 'include',
     }).then(response => {
       response.json().then(userInfo => {
@@ -16,7 +16,7 @@ export default function Header() {
   }, []);
 
   async function logout() {
-    await fetch('http://localhost:3000/logout', {
+    await fetch('https://weblogs-3hui.onrender.com/logout', {
       credentials: 'include',
       method: 'POST',
     });

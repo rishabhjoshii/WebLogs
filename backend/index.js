@@ -63,6 +63,7 @@ app.post('/login', async function(req,res){
             msg: "logged in successfully",
             id: user._id, 
             username,
+            token: token
         });
 
     }
@@ -138,7 +139,7 @@ app.put('/post',uploadMiddleware.single('file'), async (req, res) => {
         }
         const {token} = req.cookies;
         jwt.verify(token, process.env.JWT_PASSWORD,{}, async (err,info) => {
-            if(err) throw err;
+            if(err) return res.status(400).json({err});
             
             //info to be updated
             const {id,title,summary,content,username} = req.body;

@@ -13,7 +13,7 @@ export default function LoginPage(){
     async function login(e){
         e.preventDefault();
         try{
-            const response = await fetch("http://localhost:3000/login",{
+            const response = await fetch("https://weblogs-3hui.onrender.com/login",{
                 method: "POST",
                 body: JSON.stringify({username,password}),
                 headers: {'Content-Type': 'application/json'},

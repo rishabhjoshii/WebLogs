@@ -27,7 +27,7 @@ const CreatePost = () => {
         e.preventDefault();
 
         //fetch call
-        const response = await fetch('http://localhost:3000/post', {
+        const response = await fetch('https://weblogs-3hui.onrender.com/post', {
             method: 'POST',
             body: data,
             credentials: 'include',
@@ -36,8 +36,11 @@ const CreatePost = () => {
             alert("Post created successfully");
             setRedirect(true);
         }
-        if(response.status===500){
+        else if(response.status===500){
             alert("fill all the fields correctly");
+        }
+        else{
+            alert("failed to create post");
         }
     }
 
@@ -45,7 +48,7 @@ const CreatePost = () => {
         // return <Navigate to={'/'}/>
         window.history.back();
     }
-    if(!userInfo.username) {
+    if(!userInfo) {
         // console.log("username:",userInfo.username);
         // console.log("cotrol is reaching here");
         return <Navigate to={'/'}/>

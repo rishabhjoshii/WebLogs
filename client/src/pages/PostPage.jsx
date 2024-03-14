@@ -17,7 +17,7 @@ const PostPage = () => {
     const id = param.id;   //this is blog or post id 
 
     useEffect(() => {
-        fetch(`http://localhost:3000/post/${id}`)
+        fetch(`https://weblogs-3hui.onrender.com/post/${id}`)
           .then(response => {
             response.json().then(postInfo => {
               //console.log("postinfo is here",postInfo);
@@ -41,7 +41,7 @@ const PostPage = () => {
         const data = {
           username : userInfo? userInfo.username : null,
         }
-        const response = await fetch(`http://localhost:3000/post/${id}`, {
+        const response = await fetch(`https://weblogs-3hui.onrender.com/${id}`, {
           method: "DELETE",
           body: JSON.stringify(data) ,
           headers: {'Content-Type': 'application/json'},
@@ -117,7 +117,7 @@ const PostPage = () => {
               
             )}
             <div className='image'>
-                <img src={`http://localhost:3000/${postInfo.cover}`} alt="Image"/>
+                <img src={`https://weblogs-3hui.onrender.com/${postInfo.cover}`} alt="Image"/>
             </div>
             
             <div className='content shadow-lg shadow-[#474646] p-[1rem] mt-[2rem]' dangerouslySetInnerHTML={{__html:postInfo.content}}/>

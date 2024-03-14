@@ -9,7 +9,7 @@ export default function IndexPage() {
   const [posts,setPosts] = useState([]);
   const [loading,setLoading] = useState(true);
   useEffect(() => {
-    fetch('http://localhost:3000/post').then(response => {
+    fetch('https://weblogs-3hui.onrender.com/post').then(response => {
       response.json().then(posts => {
         setPosts(posts);
         setLoading(false);

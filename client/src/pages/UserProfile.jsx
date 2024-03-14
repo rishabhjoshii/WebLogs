@@ -18,7 +18,7 @@ const UserProfile = () => {
 
   useEffect(()=>{
     try{
-      fetch(`http://localhost:3000/${username}`)
+      fetch(`https://weblogs-3hui.onrender.com/${username}`)
         .then(response => {
           response.json().then(result => {
             console.log("result on FE", result);
