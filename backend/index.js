@@ -9,10 +9,11 @@ const cookieParser = require('cookie-parser');
 const multer = require('multer');
 const uploadMiddleware = multer({ dest: 'uploads/' });
 const fs = require('fs');
+require('dotenv').config();
 
 
 const salt = bcrypt.genSaltSync(10);
-const jwtSecretKey = "mySecretKey123987";
+
 
 const app=express();
 
@@ -21,7 +22,7 @@ app.use(express.json());
 app.use(cookieParser());
 app.use('/uploads', express.static(__dirname + '/uploads'));
 
-mongoose.connect("mongodb+srv://rishabhjoshii:qO4DyWnYsmlbPvER@cluster0.zozdpwg.mongodb.net/")
+mongoose.connect(process.env.MONGODB_URL)
     .then(() => {
         console.log("Connected to MongoDB");
     })
@@ -57,7 +58,7 @@ app.post('/login', async function(req,res){
         if(!result) return res.status(401).json({msg: "Incorrect password"});
 
         //user is valid ,generate token for the user
-        const token = jwt.sign({username},jwtSecretKey);
+        const token = jwt.sign({username},process.env.JWT_PASSWORD);
         return res.cookie('token',token).json({
             msg: "logged in successfully",
             id: user._id, 
@@ -77,7 +78,7 @@ app.get('/profile',async function(req,res){
     //  console.log("token",token)
         if(!token && token == "") return res.status(400).json(null);
 
-        jwt.verify(token, jwtSecretKey, (err,info) => {
+        jwt.verify(token, process.env.JWT_PASSWORD, (err,info) => {
             if(err) return res.json({msg:"error on /profile endpoint",error: err});
             return res.json(info);
         })
@@ -102,7 +103,7 @@ app.post('/post', uploadMiddleware.single('file'), async function(req,res){
       fs.renameSync(path, newPath);
 
       const {token} = req.cookies;
-      jwt.verify(token, jwtSecretKey,{}, async (err,info) => {
+      jwt.verify(token, process.env.JWT_PASSWORD,{}, async (err,info) => {
          if(err) return res.status(400).json({err});
 
          // const {title,summary,content} = req.body;
@@ -136,7 +137,7 @@ app.put('/post',uploadMiddleware.single('file'), async (req, res) => {
             fs.renameSync(path, newPath);
         }
         const {token} = req.cookies;
-        jwt.verify(token, jwtSecretKey,{}, async (err,info) => {
+        jwt.verify(token, process.env.JWT_PASSWORD,{}, async (err,info) => {
             if(err) throw err;
             
             //info to be updated
