@@ -17,9 +17,14 @@
     max-width: 700px;  
     margin: 0 auto;
   }
-  @media screen and (min-width: 786px) {
+  @media screen and (min-width: 450px) {
     main{
-      max-width:1200px;
+      max-width:700px;
+    }
+  }
+  @media screen and (min-width: 850px) {
+    main{
+      max-width:1250px;
     }
   }
   header{
@@ -274,8 +279,20 @@
     align-items: center;
     flex-direction: column;
   }
+  @media screen and (min-width: 450px) {
+    footer{
+      height: 75px;
+    }
+    footer nav{
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+  }
   footer nav{
     display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
   }
