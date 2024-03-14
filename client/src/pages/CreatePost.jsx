@@ -48,7 +48,7 @@ const CreatePost = () => {
     if(!userInfo.username) {
         // console.log("username:",userInfo.username);
         // console.log("cotrol is reaching here");
-        return navigate('/')
+        return <Navigate to={'/'}/>
     }
   return (
     <>
