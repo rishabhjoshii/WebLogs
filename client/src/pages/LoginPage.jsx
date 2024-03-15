@@ -19,13 +19,14 @@ export default function LoginPage(){
                 headers: {'Content-Type': 'application/json'},
                 credentials: 'include',
             })
-            //console.log("login response from backend" , response);
+            console.log("login response from backend" , response);
 
             if(response.status===200){
                 response.json().then((userInfo) => {
                     setUserInfo(userInfo);
                     setRedirect(true);
                     alert("login successful");
+                    // localStorage.setItem("token", userInfo.token);
                 })
                 
             }

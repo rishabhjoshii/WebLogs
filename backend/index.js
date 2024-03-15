@@ -67,7 +67,13 @@ app.post('/login', async function(req,res){
         //user is valid ,generate token for the user
         const token = jwt.sign({username},process.env.JWT_PASSWORD);
         console.log("token is here",token);
-        return res.cookie('token',token).json({
+        // return res.cookie('token',token).json({
+        //     msg: "logged in successfully",
+        //     id: user._id, 
+        //     username,
+        //     token: token
+        // });
+        return res.json({
             msg: "logged in successfully",
             id: user._id, 
             username,
