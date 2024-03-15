@@ -21,7 +21,7 @@ const UserProfile = () => {
       fetch(`https://weblogs-3hui.onrender.com/${username}`)
         .then(response => {
           response.json().then(result => {
-            console.log("result on FE", result);
+            //console.log("result on FE", result);
             setuserPosts(result);
             setLoading(false);
             if(result.status === 404){

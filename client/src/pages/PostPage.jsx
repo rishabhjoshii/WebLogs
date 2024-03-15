@@ -63,7 +63,7 @@ const PostPage = () => {
       catch (error) {
         //console.error("An error occurred while deleting post:", error);
         alert("An error occurred while deleting post");
-        console.log("del error", error);
+        //console.log("del error", error);
       }
     }
 

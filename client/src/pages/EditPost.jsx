@@ -18,7 +18,7 @@ const EditPost = () => {
         fetch(`https://weblogs-3hui.onrender.com/${id}`)
             .then(response => {
                 response.json().then(postInfo => {
-                    console.log("postInfo is here ", postInfo);
+                    //console.log("postInfo is here ", postInfo);
                     setTitle(postInfo.postDoc.title);
                     setSummary(postInfo.postDoc.summary);
                     setContent(postInfo.postDoc.content);
