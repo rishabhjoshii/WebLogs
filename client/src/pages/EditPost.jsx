@@ -60,24 +60,27 @@ const EditPost = () => {
         return <Navigate to={`/post/${id}`}/>
     }
   return (
-    <form onSubmit={updatePost}>
-        <input type='title' 
-            placeholder='Title' 
-            value={title} 
-            onChange={(e)=> {setTitle(e.target.value)}}></input>
+    <div className='flex justify-center items-center '>
+        <form onSubmit={updatePost} className='screen w-[70%]'>
+            <input type='title' 
+                placeholder='Title' 
+                value={title} 
+                onChange={(e)=> {setTitle(e.target.value)}}></input>
 
-        <input type='summary' 
-            placeholder='Summary'
-            value={summary}
-            onChange={(e)=>setSummary(e.target.value)}></input>
+            <input type='summary' 
+                placeholder='Summary'
+                value={summary}
+                onChange={(e)=>setSummary(e.target.value)}></input>
 
-        <input type='file'
-                onChange={e=>setFiles(e.target.files)}></input>
+            <input type='file'
+                    onChange={e=>setFiles(e.target.files)}></input>
 
-        <Editor onChange={setContent} value={content} />
+            <Editor onChange={setContent} value={content} />
 
-        <button style={{marginTop:'5px'}}>Update Post</button>
-    </form>
+            <button style={{marginTop:'5px'}}>Update Post</button>
+        </form>
+    </div>
+    
   )
 }
 

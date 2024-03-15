@@ -25,15 +25,7 @@ const CreatePost = () => {
         data.set('file', files[0]); 
         data.set('username', userInfo.username);
         e.preventDefault();
-
-        // const token = document.cookie.replace(/(?:(?:^|.*;\s*)token\s*\=\s*([^;]*).*$)|^.*$/, "$1");
-        // if (!token) {
-        //     alert("Token not found");
-        //     return;
-        // }
-        // else{
-        //     console.log("token is here", token);
-        // }
+        
         //fetch call
         const response = await fetch('https://weblogs-3hui.onrender.com/post', {
             method: 'POST',

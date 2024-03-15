@@ -41,7 +41,7 @@ const PostPage = () => {
         const data = {
           username : userInfo? userInfo.username : null,
         }
-        const response = await fetch(`https://weblogs-3hui.onrender.com/${id}`, {
+        const response = await fetch(`https://weblogs-3hui.onrender.com/post/${id}`, {
           method: "DELETE",
           body: JSON.stringify(data) ,
           headers: {'Content-Type': 'application/json'},
@@ -63,6 +63,7 @@ const PostPage = () => {
       catch (error) {
         //console.error("An error occurred while deleting post:", error);
         alert("An error occurred while deleting post");
+        console.log("del error", error);
       }
     }
 
