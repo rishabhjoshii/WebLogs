@@ -17,7 +17,14 @@ const salt = bcrypt.genSaltSync(10);
 
 const app=express();
 
-app.use(cors({credentials: true, origin: 'http://localhost:5173'}));
+const corsOptions ={
+    origin:'http://localhost:5173', 
+    credentials:true,      
+    exposedHeaders: ["set-cookie"],      //access-control-allow-credentials:true
+    methods:['GET','POST','PUT','DELETE']
+}
+
+app.use(cors(corsOptions));
 app.use(express.json());
 app.use(cookieParser());
 app.use('/uploads', express.static(__dirname + '/uploads'));
