@@ -7,6 +7,9 @@ export default function Header() {
   const navigate = useNavigate();
   useEffect(() => {
     fetch('https://weblogs-3hui.onrender.com/profile', {
+      headers: {
+        "token" : localStorage.getItem('token')
+      },
       credentials: 'include',
     }).then(response => {
       response.json().then(userInfo => {
@@ -21,7 +24,8 @@ export default function Header() {
       method: 'POST',
     });
     setUserInfo(null);
-    navigate('/');
+    localStorage.removeItem('token');
+    navigate('/login');
   }
 
   const username = userInfo?.username;

@@ -89,7 +89,7 @@ app.post('/login', async function(req,res){
 
 app.get('/profile',async function(req,res){
     try{
-        const {token} = req.cookies;
+        const {token} = req.headers;
     //  console.log("token",token)
         if(!token && token == "") return res.status(400).json(null);
 
