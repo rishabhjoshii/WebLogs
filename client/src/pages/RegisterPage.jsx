@@ -37,7 +37,7 @@ export default function RegisterPage(){
         <>
         <div className="rounded-lg border bg-card text-card-foreground shadow-xl mx-auto max-w-sm" data-v0-t="card">
         <div className="flex flex-col p-6 space-y-1">
-          <h3 className="whitespace-nowrap tracking-tight text-2xl font-bold">Register</h3>
+          <h3 className="whitespace-nowrap tracking-tight text-2xl font-bold">Sign Up</h3>
           <p className="text-sm text-muted-foreground">Enter your email below to login to your account</p>
         </div>
         <div className="p-6">

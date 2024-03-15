@@ -103,7 +103,7 @@ export default function LoginPage(){
     <div className="mt-4 text-center text-sm">
       Don't have an account?
       <Link className="underline" to={'/register'}>
-        Register
+        Sign Up
       </Link>
     </div>
   </div>

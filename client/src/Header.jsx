@@ -53,7 +53,7 @@ export default function Header() {
         {!username && (
           <>
             <Link className="hover:underline" to="/login">Login</Link>
-            <Link className="hover:underline" to="/register">Register</Link>
+            <Link className="hover:underline" to="/register">Sign Up</Link>
           </>
         )}
       </nav>
