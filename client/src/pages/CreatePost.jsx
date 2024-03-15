@@ -38,6 +38,9 @@ const CreatePost = () => {
         const response = await fetch('https://weblogs-3hui.onrender.com/post', {
             method: 'POST',
             body: data,
+            headers: {
+                "token" : localStorage.getItem('token'),
+            },
             credentials: 'include',
         });
         if(response.ok){
