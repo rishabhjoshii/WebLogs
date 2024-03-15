@@ -41,15 +41,15 @@ export default function Header() {
       <nav>
         {username && (
           <>
-            <Link to="/create">Create new post</Link>
-            <Link onClick={logout} >Logout ({username})</Link>
+            <Link className="hover:underline" to="/create">Create new post</Link>
+            <Link className="hover:underline" onClick={logout} >Logout ({username})</Link>
             <Link to={`/${username}`} className='h-[2rem] w-[2rem] bg-[#003663] text-white  flex justify-center items-center rounded-full font-extrabold cursor-pointer' >{username.charAt(0).toUpperCase()}</Link> 
           </>
         )}
         {!username && (
           <>
-            <Link to="/login">Login</Link>
-            <Link to="/register">Register</Link>
+            <Link className="hover:underline" to="/login">Login</Link>
+            <Link className="hover:underline" to="/register">Register</Link>
           </>
         )}
       </nav>

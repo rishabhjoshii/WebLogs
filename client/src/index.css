@@ -279,20 +279,15 @@
     align-items: center;
     flex-direction: column;
   }
-  @media screen and (min-width: 450px) {
-    footer{
-      height: 75px;
-    }
+  /* @media screen and (min-width: 450px) {
     footer nav{
-      display: flex;
-      justify-content: center;
-      align-items: center;
+      flex-direction: row;
     }
 
-  }
+  } */
   footer nav{
     display: flex;
-    flex-direction: column;
+    /* flex-direction: column; */
     justify-content: center;
     align-items: center;
   }
