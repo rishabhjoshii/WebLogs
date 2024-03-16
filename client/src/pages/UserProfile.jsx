@@ -52,6 +52,7 @@ const UserProfile = () => {
 
   return (
     <>
+      {!found && (<NotFoundPage/>)}
       <div class="border rounded-lg p-4 flex items-center space-x-2 text-sm w-full mx-auto mb-[40px]">
         <svg
           xmlns="http://www.w3.org/2000/svg"
@@ -102,7 +103,7 @@ const UserProfile = () => {
         <Post {...post} />
       ))}
 
-      {!found && (<NotFoundPage/>)}
+      
     </>
   )
 }
