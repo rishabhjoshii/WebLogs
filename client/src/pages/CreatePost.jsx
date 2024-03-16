@@ -51,7 +51,7 @@ const CreatePost = () => {
         // return <Navigate to={'/'}/>
         window.history.back();
     }
-    if(!userInfo) {
+    if(!userInfo || !userInfo.username) {
         // console.log("username:",userInfo.username);
         // console.log("cotrol is reaching here");
         return <Navigate to={'/'}/>
