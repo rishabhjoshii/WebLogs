@@ -50,8 +50,8 @@ const PostPage = () => {
     
         if (response.status===200) {
           //console.log("Post deleted successfully");
-          // navigate(-1);
-          window.history.back();
+          navigate('/');
+          // window.history.back();
           
         } 
         else {
