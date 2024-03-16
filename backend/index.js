@@ -65,7 +65,7 @@ app.post('/login', async function(req,res){
         if(!result) return res.status(401).json({msg: "Incorrect password"});
 
         //user is valid ,generate token for the user
-        const token = jwt.sign({username},process.env.JWT_PASSWORD);
+        //const token = jwt.sign({username},process.env.JWT_PASSWORD);
         console.log("token is here",token);
         // return res.cookie('token',token).json({
         //     msg: "logged in successfully",
