@@ -66,7 +66,7 @@ export default function LoginPage(){
           required=""
           type="text"
           value={username}
-          onChange={(e)=> setUsername(e.target.value)}
+          onChange={(e)=> setUsername(e.target.value.toLowerCase())}
         />
       </div>
       <div className="space-y-2">

@@ -56,7 +56,7 @@ export default function RegisterPage(){
                 required=""
                 type="text"
                 value={username}
-                onChange={(e)=> setUsername(e.target.value)}
+                onChange={(e)=> setUsername(e.target.value.toLocaleUpperCase())}
               />
             </div>
             <div className="space-y-2">
