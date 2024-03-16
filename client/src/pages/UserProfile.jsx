@@ -53,6 +53,7 @@ const UserProfile = () => {
   return (
     <>
       {!found && (<NotFoundPage/>)}
+      {found && ( <>
       <div class="border rounded-lg p-4 flex items-center space-x-2 text-sm w-full mx-auto mb-[40px]">
         <svg
           xmlns="http://www.w3.org/2000/svg"
@@ -73,7 +74,9 @@ const UserProfile = () => {
     </div>
 
     <h1 className="text-3xl font-bold mb-[40px] underline decoration-2 text-center">Posts Created </h1>
-    
+    </>
+    )}
+
       {userPosts.length == 0 && ( 
         <div class="flex flex-col justify-center items-center space-y-2  bg-gray-100 dark:bg-gray-900 h-[15rem]">
             <svg
