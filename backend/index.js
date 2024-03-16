@@ -55,17 +55,22 @@ app.post("/register", async function(req,res){
 })
 
 app.post('/login', async function(req,res){
-    const {username,password} = req.body;
+    
     try{
+        const {username,password} = req.body;
+        console.log("username:",username);
+        console.log("password:",password);
+
         const user = await User.findOne({username});
         if(!user) return res.status(401).json({msg: "Invalid username"});
+        console.log("user searched");
 
         const result = bcrypt.compareSync(password,user.password);
 
         if(!result) return res.status(401).json({msg: "Incorrect password"});
 
         //user is valid ,generate token for the user
-        //const token = jwt.sign({username},process.env.JWT_PASSWORD);
+        const token = jwt.sign({username},process.env.JWT_PASSWORD);
         console.log("token is here",token);
         // return res.cookie('token',token).json({
         //     msg: "logged in successfully",
