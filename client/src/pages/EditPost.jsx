@@ -15,15 +15,21 @@ const EditPost = () => {
     const {id} = useParams();
 
     useEffect(() => {
-        fetch(`https://weblogs-3hui.onrender.com/${id}`)
+        try{
+            fetch(`https://weblogs-3hui.onrender.com/post/${id}`)
             .then(response => {
                 response.json().then(postInfo => {
-                    //console.log("postInfo is here ", postInfo);
+                    console.log("postInfo is here ", postInfo);
                     setTitle(postInfo.postDoc.title);
                     setSummary(postInfo.postDoc.summary);
                     setContent(postInfo.postDoc.content);
                 })
             })
+        }
+        catch(err){
+            console.log(err);
+        }
+        
     },[]);
 
     async function updatePost(e){
