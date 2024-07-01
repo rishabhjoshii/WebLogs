@@ -11,7 +11,7 @@ const Dashboard = () => {
                     </div>
             </section>
 
-            <div className='md:grid md:grid-cols-2 md:gap-x-16 lg:gap-x-8 mb-20 md:mb-28'>
+            <div className='w-full h-4 flex gap-2'>
               <div>
                 <h3 class="mb-4 text-4xl lg:text-6xl leading-tight">What features does WebLogs provide ?</h3>
               </div>
@@ -23,7 +23,7 @@ const Dashboard = () => {
             </div>
 
             <div class="flex justify-center items-center mb-[40px] mt-[30px] ">
-                <h1 class="underline  text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl/none">Featured Posts</h1>
+                <h1 class="underline  text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl/none">More Stories</h1>
             </div>
     </div>
   )
