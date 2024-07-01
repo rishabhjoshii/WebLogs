@@ -11,7 +11,7 @@ const Dashboard = () => {
                     </div>
             </section>
 
-            <div className='w-full h-4 flex gap-2'>
+            <div className='w-full h-8 flex gap-2 mt-4'>
               <div>
                 <h3 class="mb-4 text-4xl lg:text-6xl leading-tight">What features does WebLogs provide ?</h3>
               </div>
