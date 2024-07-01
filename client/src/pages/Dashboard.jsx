@@ -11,19 +11,8 @@ const Dashboard = () => {
                     </div>
             </section>
 
-            <div className='w-full h-8 flex gap-2 mt-4'>
-              <div>
-                <h3 class="mb-4 text-4xl lg:text-6xl leading-tight">What features does WebLogs provide ?</h3>
-              </div>
-              <div>
-                <div class="text-lg leading-relaxed mb-4">
-                  <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quid dubitas igitur mutare principia naturae? Ita multo sanguine profuso in laetitia et in victoria est mortuus. Omnia contraria, quos etiam insanos esse vultis. Hinc ceteri particulas arripere conati suam quisque videro voluit afferre sententiam. Quis non odit sordidos, vanos, leves, futtiles? Quasi ego id curem, quid ille aiat aut neget.</p>
-                </div>
-              </div>
-            </div>
-
             <div class="flex justify-center items-center mb-[40px] mt-[30px] ">
-                <h1 class="underline  text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl/none">More Stories</h1>
+                <h1 class="underline  text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl/none">Featured Posts</h1>
             </div>
     </div>
   )
