@@ -21,7 +21,7 @@ const Dashboard = () => {
                 </div>
               </div>
             </div>
-            
+
             <div class="flex justify-center items-center mb-[40px] mt-[30px] ">
                 <h1 class="underline  text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl/none">Featured Posts</h1>
             </div>
