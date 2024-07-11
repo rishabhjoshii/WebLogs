@@ -78,7 +78,7 @@ const UserProfile = () => {
     )}
 
       {userPosts.length == 0 && ( 
-        <div class="flex flex-col justify-center items-center space-y-2  bg-gray-100 dark:bg-gray-900 h-[15rem]">
+        <div class="flex flex-col justify-center items-center space-y-2  bg-gray-100  h-[15rem]">
             <svg
               xmlns="http://www.w3.org/2000/svg"
               width="24"
